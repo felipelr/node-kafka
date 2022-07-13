@@ -1,12 +1,5 @@
 version: '3'
 services:
-  app:
-    container_name: nodejs
-    build: .
-    ports:
-      - 3000:3000
-    volumes:
-      - .:/home/node/app
   zookeeper:
     image: confluentinc/cp-zookeeper:7.0.1
     container_name: zookeeper
