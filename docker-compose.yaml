@@ -24,3 +24,11 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+  node_app:
+    build: .
+    depends_on:
+      - broker
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/home/node/app

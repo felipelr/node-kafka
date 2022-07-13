@@ -59,7 +59,7 @@ export default class ProducerFactory {
   private createProducer(clientId: string): Producer {
     const kafka = new Kafka({
       clientId: clientId,
-      brokers: ["localhost:9092"],
+      brokers: ["broker:29092"],
     });
 
     return kafka.producer();

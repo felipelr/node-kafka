@@ -65,7 +65,7 @@ export default class TestConsumer {
   private createKafkaConsumer(clientId: string): Consumer {
     const kafka = new Kafka({
       clientId: clientId,
-      brokers: ["localhost:9092"],
+      brokers: ["broker:29092"],
     });
     const consumer = kafka.consumer({ groupId: "consumer-group" });
     return consumer;
