@@ -9,8 +9,8 @@ import {
 export default class TestConsumer {
   private kafkaConsumer: Consumer;
 
-  public constructor() {
-    this.kafkaConsumer = this.createKafkaConsumer();
+  public constructor(clientId: string) {
+    this.kafkaConsumer = this.createKafkaConsumer(clientId);
   }
 
   public async startConsumer(subscribeTopics: string[]): Promise<void> {
@@ -62,9 +62,9 @@ export default class TestConsumer {
     await this.kafkaConsumer.disconnect();
   }
 
-  private createKafkaConsumer(): Consumer {
+  private createKafkaConsumer(clientId: string): Consumer {
     const kafka = new Kafka({
-      clientId: "client-id-test",
+      clientId: clientId,
       brokers: ["localhost:9092"],
     });
     const consumer = kafka.consumer({ groupId: "consumer-group" });

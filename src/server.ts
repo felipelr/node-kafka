@@ -1,10 +1,12 @@
 import express, { Request, Response, NextFunction } from "express";
-import ProducerFactory from "./factory/ProducerFactory";
+import ProducerFactory from "./producer/factory/ProducerFactory";
+import TestConsumer from "./consumer/TestConsumer";
 import homeRouter from "./routes/homeRouter";
 
 const port = process.env.PORT || 3000;
 const app = express();
 const producerFactory = new ProducerFactory("producer-nodejs-kafka");
+const testConsumer = new TestConsumer("client-nodejs-kafka");
 
 declare global {
   namespace Express {
@@ -25,6 +27,7 @@ app.use("/", homeRouter);
 
 const run = async () => {
   await producerFactory.start();
+  await testConsumer.startConsumer(["sales-topic"]);
   app.listen(port, () => {
     console.log("servidor rodando");
   });
@@ -33,4 +36,5 @@ const run = async () => {
 run().catch((e) => {
   console.error(`[example/producer] ${e.message}`, e);
   producerFactory.shutdown();
+  testConsumer.shutdown();
 });

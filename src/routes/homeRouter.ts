@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express";
-import { CustomMessageFormat } from "../factory/ProducerFactory";
+import { CustomMessageFormat } from "../producer/factory/ProducerFactory";
 
 const homeRouter = Router();
 
